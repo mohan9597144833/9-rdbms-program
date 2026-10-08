@@ -1,44 +1,25 @@
-CREATE DATABASE IF NOT EXISTS CollegeDB;
-USE CollegeDB;
-
-DROP TABLE IF EXISTS Student;
-DROP TABLE IF EXISTS Department;
-
--- Create Department table
-CREATE TABLE Department (
-    DepartmentID INT PRIMARY KEY,
-    DepartmentName VARCHAR(30) NOT NULL
+create database mohan;
+USE mohan;
+CREATE TABLE Departments(
+DepartmentID INT,
+DepartmentName VARCHAR(30)
 );
-
--- Create Student table
-CREATE TABLE Student (
-    StudentID INT PRIMARY KEY,
-    StudentName VARCHAR(30) NOT NULL,
-    DepartmentID INT NOT NULL
+INSERT INTO Departments VALUES
+(101,'Computer Science'),
+(102,'Mathematics'),
+(103,'Physics');
+CREATE TABLE students(
+StudentID INT,
+StudentName VARCHAR(20),
+DepartmentID INT
 );
-
--- Insert Department records
-INSERT INTO Department
-    (DepartmentID, DepartmentName)
-VALUES
-    (101, 'Computer Science'),
-    (102, 'Mathematics'),
-    (103, 'Physics');
-
--- Insert Student records
-INSERT INTO Student
-    (StudentID, StudentName, DepartmentID)
-VALUES
-    (1001, 'Arun', 101),
-    (1002, 'Divya', 102),
-    (1003, 'Karthik', 101),
-    (1004, 'Nisha', 103);
-
--- INNER JOIN
-SELECT
-    Student.StudentName,
-    Department.DepartmentName
-FROM Student
-INNER JOIN Department
-    ON Student.DepartmentID = Department.DepartmentID
-ORDER BY Student.StudentID;
+INSERT INTO students VALUES
+(1001,'Arun',101),
+(1002,'Divya',102),
+(1003,'Karthik',101),
+(1004,'Nisha',103);
+SELECT students.StudentName,
+Departments.DepartmentName
+FROM students
+INNER JOIN Departments
+ON students.DepartmentID = Departments.DepartmentID;
